@@ -1,0 +1,267 @@
+\documentclass[a4paper]{book}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{setspace}
+  \usepackage{enumitem}
+  \usepackage{geometry}
+  \usepackage{amsthm}
+  \usepackage[all]{xy}
+  \usepackage{extarrows}
+  \usepackage{breqn}
+  \geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+\begin{document}
+  \newtheorem{thm}{Theorem}[chapter]
+  \newtheorem{lemma}[thm]{Lemma}
+  \newtheorem{cor}[thm]{Corllary}
+  \newtheorem{prop}[thm]{Proposition}
+  \theoremstyle{definition}
+  \newtheorem{defi}[thm]{Definition}
+  \theoremstyle{remark}
+  \newtheorem{rmk}{Remark}
+  \setcounter{chapter}{3}
+\chapter{$L^p space$}
+ \section{Convolution and regulation}
+    \begin{prop}[and the definition of the support]
+        Let f: $\mathbb{R}^N \rightarrow \mathbb{R}$ be any function. Consider the family $(\omega_i)_{i\in I}$ of all open sets in $\mathbb{R}^N$ such that for each $i \in I$, $f = 0$ \emph{a.e.} in $\omega_i$. Set $w= \bigcup_ {i \in I} \omega _ i$.
+
+        then $f = 0$ \emph(a.e.) on $\omega$.
+
+        By definition \emph{supp}$f$ is the complement of $\omega$ in $\mathbb{R}^N$.
+    \begin{proof}
+        Since set $I$ need not to be \emph{countable}, we may cover $\omega_i$ by our \emph{countable} topological basis.
+    \end{proof}
+    \end{prop}
+
+    \begin{prop}
+        let $f\in L^1(\mathbb{R}^N)$ and $g\in L^p(\mathbb{R}^N)$ with $1 \le p \le \infty $. Then: \[ \fbox{ $ \emph{supp}(f*g) \subset \overline {\emph{supp}f + \emph{supp}g} \ $} \]
+    \end {prop}
+
+    \begin{rmk}
+        If both $f$ and $g$ have compact support, then $f*g$ have compact support. However, $f*g$ need not have compact support if \emph{only one} of them have compact support.
+    \end{rmk}
+
+    \begin{defi}
+        If $\Omega \subset \mathbb{R}^N$ h be open, and let $1 \le p \le \infty $. We say that a function $f:\Omega \rightarrow \mathbb{R}$ belongs to $L_{loc}^p(\Omega)$ if $f\chi_K \in L^p(\Omega)$ for every compact set K contained in $\Omega$
+
+        Note that if $f \in L_{loc}^p(\Omega)$, then $f \in L_{loc}^1(\Omega)$.
+    \end{defi}
+
+    \begin{prop}
+        Let $f \in C_c(\mathbb R^N)$ and $g \in L^p_{loc}(\mathbb R^N)$ Then $f*g$ is well defined for  $x \in \mathbb R$, and, moreover, $(f*g)\in C(\mathbb R^N)$.
+    \begin{proof}
+        Note that for every $x \in \mathbb R^N$ the function $y \mapsto f(x-y)g(y)$ is integrable on $\mathbb R^N$, because ($x-$supp $f) \ \cap$ supp $g$ is compact.
+
+        Let $x_n \rightarrow x$ and let K a fixed compact set in $\mathbb R^N$ such that ($x_-$supp$f$)$\subset K$ for $\forall n$. Therefore, we have $f(x_n-y)=0$, $\forall n$, $\forall y \notin K.$ We deduce from the uniform continuity of $f$ that  \[ |f(x_n-y)-f(x-y)| \le \epsilon_n\chi_K(y) \qquad \forall_n, \forall_y \in \mathbb R^n \] with $\epsilon_n \rightarrow 0$. We conclude that \[ |(f*g)(x_n)-(f*g(x)=\epsilon_n \int_K |g(y)|{\rm d}y\rightarrow 0\]
+    \end{proof}
+    \end {prop}
+    \begin{prop}
+        let $f\in C_c^K(\mathbb R^N)$ and let $g \in L^1_(loc)(\mathbb R^N)$. Then $f*g \in C^k(\mathbb R^N)$ and \[ \fbox {$ D ^ { \alpha} (f * g)= ( D^{\alpha}f ) * g \ \ \forall \alpha \ {\rm with } \ \alpha \le k.$} \]
+        \begin{proof}
+        By induction it suffice to consider the case $k=1$. Given $x \in \mathbb R^N$, let $h \in \mathbb R^N$ with $|h| < 1$. We have, for all $y \in \mathbb R^N$
+        \begin{flalign*}
+        |f(x+h-y)-f(x-y)-h\nabla f(x-y)|  =|\int_0^1 h\nabla f(x+sh-y)-h \nabla f(x-y){\rm d}s| \le |h|\epsilon|h|
+        \end{flalign*}
+        with $\epsilon(|h|) \rightarrow 0$ as $|h| \rightarrow 0$(since $\nabla f$ in uniformly continuous on $\mathbb R^N$)
+
+        Let $K$ be fixed compact set in $\mathbb R^N$ large enough that $x+B(0,1)-{\rm supp}f \subset K$. We have \[ f(x+h-y ) -  f(x-y) - h\nabla f(x-y)=0 \ \ \forall y \notin K \forall h \in B(0,1) \]
+
+        and therefore
+        \[ |f(x + h - y ) - f(x - y) - h \nabla f (x - y)| \le |h|\epsilon(|h|)\chi_K(y) \ \ \forall y \in \mathbb R^N, \ \forall h \in B(0,1).\]
+        We conclude that for $h \in B(0,1)$
+        \[|(f*g)(x+h)-(f*g)(x)-h(\nabla f*g)(x)| \le |h|\epsilon(|h|)\int_K|g(y)|{\rm d}y \]
+        It follows that $f*g$ is differentiable at $x$ and $ \nabla(f*g)(x)=(\nabla f)*g(x) $
+        \end{proof}
+    \end{prop}
+    \subsection{Mollifiers}
+    \begin{defi} A sequence of \emph{mollifiers} $(\rho_n)_{n \ge 1}$ is any sequence of functions on $\mathbb R^N$ such that \[ \rho_n \in C_ c ^ \infty ( \mathbb R^N ), \ {\rm supp}\rho_n \subset \overline{B(0,1/n)}, \ \int \rho_n = 1,\rho n \ge 0 on \mathbb R^N\]
+    \end{defi}
+    In what follows \emph{we shall systematically use the notation} $(\rho_n)$ \emph{to denote a sequence of mollifiers}.
+
+    It is easy to generate a sequence of mollifiers starting with a single function $\rho$ such that supp$\rho \subset \overline{B(0,1)}, \rho \ge 0$ and $\rho$ does not vanish identically---for example the function
+             \[ \rho(x) =
+                \begin{cases}
+                    e^{1/(|x|^2-1)} & \qquad \text{if } |x| \ < \ 1 \\
+                    0               & \qquad \text{if } |x| \ > \ 1
+                \end{cases}
+             \]
+    We obtain a sequence of mollifiers by letting $\rho_n(x) = Cn^Np(nx) \text{ with } C = 1/\int \rho_n$.
+
+    \begin{prop}
+         Assume $f \in C(\mathbb R^N)$. Then $\rho_n*f \xrightarrow[n\rightarrow \infty]\ f$ uniformly on compact sets of $\mathbb R^N$
+         \begin{proof}
+            Let $K \subset \mathbb R^N$ be a fixed compact set. Given $\epsilon \ > \ 0$ there exist $\delta \ > \ 0$ (depending on $K$ and $\epsilon$) such that \[ |f(x-y -f(x) < \epsilon \ \ \forall x \in K, \ \forall y \in B(0, \delta))| \]
+            We have, for $x \in \mathbb R^N$.
+            \begin{dmath*}
+                (\rho_n*f)(x) - f(x) = \int [f( x - y ) - f ( x ) ] \rho_n(y) {\rm d}y  = \int_{B(0,1/n)}[f(x-y)-f(x)] \rho_n(y) {\rm d}y
+            \end{dmath*}
+            for $n > 1/\delta$ and $X\in K$ we obtain \[ |(\rho_n*f)(x) - f(x)| \le \epsilon \int \rho_n = \epsilon \]
+         \end{proof}
+    \end{prop}
+
+    \begin{thm}
+        Assume $f \in L^p(\mathbb R^N)$ with $1 \le p \le \infty$. Then $(\rho_n*f \xLongrightarrow1[n\rightarrow \infty]\ f)$ in $L^P(\mathbb(R^N))$.
+        \begin{proof}
+            Given $\epsilon > 0$, we fix a function $f_1 \in C_c(\mathbb R^N)$ such that $\| f-f_1 \|_p < \epsilon$. By Proposition we know that $(\rho_n*f_1) \rightarrow f_1$ uniformly on every compact set of $(\mathbb R^N)$. On the other hand, we have that \[ \text{supp}(\rho_n*f_1) \subset \overline{B(0,1)}+\text{supp}f_1,\] which is a fixed compact set. It follows that \[ \| (\rho_n*f_1)-f_1)\|_p \xrightarrow[n\rightarrow \infty]\ 0.\]
+            Finally, we write
+                \begin{align*}
+                 \| (\rho_n*f)-f \|_{p} &= \|  \rho_{n} * (f-f_{1})  \| _{p} +  \| (\rho_n*f_{1})-f_{1})\|_{p} + \| f_1-f \|_{p} \\
+                                        &\le \| f - f_{1} \| _{p}  \| \rho_ {n} \|_1 +  \| (\rho_n*f_{1})-f_{1})\|_{p} + \| f_1-f \|_{p}\\
+                                        &\le \| (\rho_n*f_{1})-f_{1})\|_{p} + 2 \| f_1-f \|_{p},
+                \end{align*}
+            and therefore $\lim_{n \rightarrow \infty}\| (\rho_n*f)-f \|_{p}=0$
+        \end{proof}
+    \end{thm}
+    \begin{cor}
+        Let $\Omega \subset \mathbb R^N$ be an open set. Then $C^\infty_c{\Omega}$ is dense in $L^p(\Omega)$ for any $1 \le p \le \infty$.
+    \end{cor}
+    \begin{cor}
+        Let $\Omega \subset \mathbb R^N$ be an open set and let $u \in L^1_{loc}{\Omega}$ be such that \[ \int uf=0 \ \ \forall f \in C_c^{\infty}.\]  Then $u=0$ \emph{a.e.} on $\Omega$。
+    \end{cor}
+  \section{Criterion for strong compactness in $L^p$}
+    It is important to be able to decide whether a family of functions in $L^p(\Omega)$ has compact closure in $L^p(\Omega)$ (in the strong topology). We recall the Ascoli-Arzela theorem:
+    \begin{thm}[Ascoli-Arzela]
+        Let $K$ be a compact metric space and let $\mathcal{H}$ be a bounded subset of $C(K)$. Assume that $\mathcal{H}$ is uniformly equicontinuous, that is,
+        \begin{align}
+            \forall \epsilon > 0, \exists \delta > 0 \ such \ that \ d(x_1,x_2)<\delta \Rightarrow |f(x_1)-f(x_2)|<\epsilon \ \forall f \in  \mathcal{H}
+        \end{align}
+    \end{thm}
+    Notation: We set $(\tau_hf)(x)=f(x+h)$.
+    \begin{thm}
+        Let $\mathcal{F}$ be a bounded set in $L^p(\mathbb(R^N))$ with $1 \le p < \infty$. Assume that
+        \begin{align}
+            \lim_{|h|\rightarrow 0} \|\tau_hf-f\| _p = 0 \text{   uniformly  in  } f \in \mathcal{F},
+        \end{align}
+        i.e., $\forall \epsilon > 0,\exists \delta >0$ such that  $\|\tau_hf-f\| < \epsilon$, where $\delta$ is only determined by $\epsilon$.
+
+        Then the closure of $\mathcal{F}_{|\Omega}$ in $L^p(\Omega)$ is compact for any measurable set $\Omega \subset \mathbb(R^N)$ with finite measure.
+        \begin{proof}
+        \emph{Step 1}: We claim that
+        \begin{align}
+            \lim_{|h|\rightarrow 0} \|f-f\|_{L^p(\mathbb R^N)} &= 0 \text{ uniformly in } f \in \mathcal{F}
+        \intertext{Indeed, we have}
+            \begin{split}
+                |(\rho_n*f)(x)-f(x)| &\le \int |f(x-y)-f(x)|\rho_n(y) {\rm d}y \\
+                                     & = \int |f(x-y)-f(x)|\rho_n(y)^{1/p+1/q} {\rm d}y \\
+                                     &\le [\int |f(x-y)-f(x)|^{p}\rho_n(y) {\rm d}y]^{1/p} [\int \rho_n(y)^ {\rm d}y]^{1/q}\\
+                                     & = [\int |f(x-y)-f(x)|^{p}\rho_n(y) {\rm d}y]^{1/p}
+            \end{split}
+        \intertext{Thus we obtain}
+            \begin{split}
+                \int |(\rho_n*f)(x)-f(x)|^p {\rm d}x   &\le \int \int |f(x-y)-f(x)|^{p}\rho_n(y) {\rm d}x {\rm d}y   \\
+                                                     & = \int_{B(0,1/n)} \rho(y) {\rm d} y \int |f(x-y)-f(x)|^{p} {\rm d}x
+            \end{split}
+        \intertext{provided $1/n < \delta$}
+        \end{align}
+
+        \emph{Step 2}: We claim that
+        \begin{align}
+            \|\rho_n*f\|_{L^\infty(\mathbb R^N)} &\le C_n \| f \|_{L^p(\mathbb R^N)} \\
+        \intertext{and}
+        \begin{split}
+            |(\rho*f)(x_1)-(\rho*f)(x_2)| &\le C_n \|f\|_p |x_1-x_2| \\
+                \forall f \in & \ \mathcal{F}, \qquad \forall x_1,x_2 \in \mathbb R^N
+        \end{split}
+        \end{align}
+            where $C_n$ depends only only on $n$.
+            The inequality (4.7) follows from Holder's inequality with $C_n=\| \rho_n \|_q$. On the other hands, we have $\nabla(\rho_n*f)=(\nabla \rho_n)*f$ and thus we obtain (4.8) with $C_n=\|\nabla \rho_n\|_q$.
+
+        \emph{Step 3}:
+            Given $\epsilon > 0$ and $\Omega \subset \mathbb R^N$ of finite measure, there is a bounded measurable subset $\omega$ of $\Omega$ such that
+            \begin{align}
+                \|f\|_{L^p(\Omega \setminus \omega)} < \epsilon ,\qquad \forall f \in \mathcal{F}
+            \end{align}
+        \emph{Step 4}:
+            It suffice to show that $\mathcal{F}_{|\Omega}$ is \emph{totally bounded}. Given $\epsilon > 0$, fix a $\omega$ such that (4.9) holds. Also we fix $n > 1/\delta$. The family $\mathcal H= (\rho_n*\mathcal F)_{|\bar \omega}$ satisfy all the assumption of the Ascoli-Arzela theorem. Therefore $\mathcal H$ has a compact closure in $C(\bar \omega)$; consequently $\mathcal H$ also has compact closure in $L^p(\bar \omega)$. Hence we may cover $\mathcal{H}$ by a finite numbers of balls of radius $\epsilon$ in $L^(\omega)$, say, \[ \mathcal{H} \subset \bigcup B(g_i.\epsilon) \ \emph{with} \ g_i\in L^p.  \]
+            Consider the functions $\bar g_i:\Omega \rightarrow \mathbb R$ defined by
+
+            \[
+            \bar g_i =
+                \begin{cases}
+                     g_i & \text{ on } \omega,                 \\
+                     0   & \text{ on }  \Omega \setminus \omega,
+                 \end{cases}
+            \]
+            and the balls $B(\bar g_i), 3 \epsilon)$ in $L^p(\Omega)$
+
+            We claim that they cover $\mathcal{F}_{|\Omega}$. Since
+            \begin{align*}
+             \|f- \bar g_i\|_{L^p(\Omega)}  & \le \epsilon + \|f- g_i\|_{L^p(\omega)}   \\
+                                            & \le \epsilon + \|f- (\rho_n*f)\|_{L^p(\mathbb R^N)} + \|g_i- (\rho_n*f)\|_{L^p(\Omega)} \le 3\epsilon
+            \end{align*}
+         \end{proof}
+    \end{thm}
+
+    \begin{cor}
+         Let $\mathcal{F}$ be a bounded set in $L^p(\mathbb R^N)$ with $1 \le p < \infty$. Assume \emph{(4.2)} and also
+         \begin{flalign*}
+            \begin{cases}
+                \forall \epsilon > 0, \ \exists \Omega \subset \mathbb R^N,   &\ \text{bounded, measurable such that} \\
+                \| f \|_{L^p(\mathbb R^N\setminus \Omega)} \ < \epsilon \                  &\ \forall f\in \mathcal{F}
+            \end{cases}
+         \end{flalign*}
+          Then the closure of $\mathcal{F}$ in $L^p(\mathbb R^N)$ is compact.
+    \end{cor}
+
+    \begin{cor}
+    Let ${G}$ be a fixed function in $L^1{\mathbb R^N}$ and let $\mathcal{F}=`g{G}*\mathcal{B}$ where $\mathcal{B}$ is a bounded set in $L^p(\mathbb R^N)$ with  $1 \le p < \infty$. Then the closure of $\mathcal{F}_{|\Omega}$ in $L^p(\Omega)$ is compact for any measurable set $\Omega \subset \mathbb(R^N)$ with finite measure.
+    \end{cor}
+
+  \chapter{Hilbert Space}
+  This guy is too lazy.
+  \chapter{Compact operators}
+  \section{Definitions. Elementary Properties. Adjoint}
+  \newcommand{\li}[1]{ \mathcal {#1} }
+  \newcommand{\norm}[2]{ \| {#1} \| _{#2} }
+  \newcommand{\ball}[1]{(B_{#1})}
+  \newcommand{\ep}{\epsilon}
+    \begin{defi}
+         A bounded operator $T \in \li L (E,F) $ is said to be compact if $T(B_E)$ has compact closure in $F$.
+    \end{defi}
+    The set of all compact operators from $E$ into $F$ is denoted by $\li K (E,F)$. For simplicity one writes $\li K (E)= \li K(E,E)$
+    \begin{thm}
+      The set $\mathcal K(E,F)$ is closed linear subspace of $\li L (E,F)$.
+    \begin{proof}
+      Clearly it is a linear subspace. Suppose that $(T_n)$ is a sequence of compact operators such that $\norm {T_n - T}{\li L(E,F)} \rightarrow 0$. We claim that T is a compact operator. Since $F$ is complete it suffice to check that for every $\ep > 0$, there is a finite covering of $T \ball E$ with balls of radius $\epsilon$. Fix an integer $n$ such that $\norm {T_n - T} {\li L(E,F)} < \ep/2 $. Since $T_n \ball E$
+    \end{proof}
+    \end{thm}
+    \begin{defi}
+        An operator $T \in \li L(E,F)$ is said to be finite rank if the range of $T$, $R(T)$, is finite dimensional.
+    \end{defi}
+
+    Clearly, any finite-rank operator is compact, and thus we have the following.
+    \begin{cor} Let $(T_n)$ be a sequence of finite rank operators converge to $T$, then T is compact.\end{cor}
+    \begin{rmk}
+        The converse problem is not positive (Counterexample was found in 1972, by P.Enflo), except some special cases. For example, Hilbert space. Indeed,
+    take $K= \overline{T \ball E}$. Given $\ep > 0$ there is a finite covering of $K$ with radius $\ep$, say $K \subset \bigcup_{i\in I)B(f_i,\ep)}$. Let $G$ denote the vector space spanned by $f_i'$ and set $T_{\ep} = P_G T$, so that $T_\ep$ is finite rank. We claim that $\norm{T - T_{\ep}}{\li L(E,F)}< 2\ep $
+    \end{rmk}
+
+    \begin{prop}
+         Let $E,F,G$ be three Banach spaces. Let $T \in \li L(E,F)$ and $S \in \li K(F,G)$ (resp. $T \in \li K(E,F)$ and $S \in \li L(F,G)$ then $S \circ T \in \li K(E,G)$
+    \end{prop}
+
+    \begin{thm}
+        $T \in \li K(E,F )$ iff $T^* \in \li K(F^*, E^*)$.
+    \begin{proof}
+        $(\Rightarrow)$ We have to show that $T^* \ball {F^*}$ has compact closure in $E^*$. let $(v_n)$ be a sequence in $T \ball {F^*}$. We claim that $T^*(v_n)$ has a convergent subsequence. Set $K = \overline{T \ball E}$; this is a compact metric space. Consider the set $\li H \subset C(K)$ defined by \[ \li H= \{ \phi_n ：x \in K \mapsto \langle v_n,x \rangle; n=1,2,\dots,\}. \]
+        The assumptions of Ascoli-Arzela's theorem are satisfied. Thus there is a subsequence, denoted by $\phi_{n_k}$, that converges uniformly on $K$ to some continuous function $\phi \in C(K)$.
+        In particular, we have \[\sup_{u\in \ball E} |\langle v_{n_k},Tu \rangle - \langle v_{n_l},Tu \rangle|  \xrightarrow[k,l\rightarrow \infty]{}  0,\]
+        i.e., \[ \norm{T^*v_{n_k}-T^*v_{n_l}}{E^*} \xrightarrow[k,l\rightarrow \infty] {} 0.\]
+        Consequently $T^*v_{n_k}$ converge in $E^*$.
+
+        $(\leftarrow)$, assume $T^* \in \li K(F^* , E^*).$ We already know, $T^{**} \in \li K(E^{**} , F^{**}).$ In particular, $T^{**}\ball E$ has compact closure in $F^{**}$. But $T \ball E = T^{**}\ball E$ and $F$ is closed in $F^{**}$. Therefore $T \in \li K(E,F )$.
+    \end{proof}
+    \end{thm}
+    \begin{cor}
+        Let $T \in \li K(E,F)$. If $u_n$ weakly converge to $u$, then $Tu_n$ strongly converge to $u$. The converge is also true if $E$ is reflexive.
+    \end{cor}
+\section{Riesz-Fredholm theory}
+    \begin{lemma}[Riesz's lemma]
+        Let $E$ be an n.v.s and let $M \subset E$ be a closed linear space such that $M \not = E$. Then 
+                    \[ \forall \ep > 0 \ \exists u \in E such that \norm{u}{}=1 and dist(u,M) \ge 1 - \ep. \]
+        \begin{proof} 
+        Let $V \in E$ with $v \notin M$. Since M is closed, then 
+                    \[ d=dist(v,M)>0 \]
+        Choose any $ m _ 0  \in  M$ 
+        \end{proof}
+    \end{lemma}
+    \end{document}
