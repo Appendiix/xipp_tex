@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=3cm}
+\usepackage{CJK}
+\begin{document}
+	\begin{CJK*}{GBK}{song}
+	\title{理论计算机考试}
+	\author{田大爷}
+		\maketitle
+	\begin{enumerate}
+		\setlength{\itemsep}{20pt}
+		\setlength{\parskip}{10pt}
+		\item (10分) 设语言 A=$\{0,00,000\}$。
+		\begin{enumerate}[(1)]
+			\item 试给出识别A的非确定型有穷自动机；
+			\item 识别A的有穷自动机至少有多少个状态？为什么？
+		\end{enumerate}
+		\item (10分) 设语言 B=$\{0^n1^{2n}\}$
+		\begin{enumerate}[(1)]
+			\item 试给出产生$B$的上下文无关文法；
+			\item 试给出 $001111$ 在该文法下的语法分析树；
+			\item 该文法是否歧义的？为什么？
+		\end{enumerate}
+		\item (10分) 试证明：一个语言是图灵可识别的，当且仅当它是图灵可枚举的。
+		\item (10分) 试写出一个不可判定的语言，并给出证明 (可以用任何已知的结论)。
+		\item (10分) 试证明：NP在多项式时间归约下是封闭的。
+		\item (10分)	试举例说明：
+		\begin{enumerate}[(1)]
+			\item P类问题和NP类问题的区别；
+			\item P=NP的后果。
+		\end{enumerate}
+		\item (10分) 假设有一个多项式时间的算法，可以判定任何一个给定的布尔表达式是否可满足。试证明：有一个多项式时间的算法，可以实际求出任何一个可满足布尔公式的一个可满足布尔赋值。
+		\item (10分) 试证明：NL $\subseteq$ DSPACE($\log^2n$)。
+		\item (10分) 试证明：NP=coNP 当且仅当 ${\text{NP}=\text P^\text{SAT}}$。
+		\item (10分)	用哈斯图或文氏图表示下列复杂度类之间已知的包含类关系：
+		
+	\ \ \ \	L、NL、P、NP、coNP、ZPP、RP、coRP、BPP、$\Sigma_2$P、$\Pi_2$P、PH
+	\end{enumerate}
+	\end{CJK*}
+\end{document}
